@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather & AQI Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Optionally include Chart.js later for the AQI graph -->
+</head>
+<body>
+  <!-- background video -->
+  <video id="bgVideo" class="bg-video" autoplay muted loop playsinline>
+    <source src="https://www.vecteezy.com/free-videos/nature-loop" type="video/mp4">
+  </video>
+
+  <header class="topbar">
+    <div class="brand">🌍 Weather & AQI</div>
+    <div class="top-actions">
+      <input id="searchInput" type="text" placeholder="Search city (e.g. Bengaluru)" />
+      <button id="searchBtn">Search</button>
+      <button id="locateBtn" title="Use current location">📍</button>
+      <button id="modeToggle" class="mode">🌓</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="left-col">
+      <div class="card big-aqi" id="cityCard">
+        <div class="card-row">
+          <div>
+            <h1 id="cityName">—</h1>
+            <div class="updated" id="lastUpdated">Last updated: —</div>
+          </div>
+          <div class="aqi-value" id="aqiValue">--</div>
+        </div>
+
+        <div class="card-row">
+          <div class="aqi-status" id="aqiCategory">—</div>
+          <div class="emoji-large" id="aqiEmoji">🙂</div>
+        </div>
+        <div class="mini-row">
+          <div>PM2.5: <span id="pm25">—</span> µg/m³</div>
+          <div>PM10: <span id="pm10">—</span> µg/m³</div>
+          <div>Temp: <span id="temp">—</span> °C</div>
+        </div>
+      </div>
+
+      <div class="card weather" id="weatherCard">
+        <div class="emoji-large" id="weatherEmoji">☀️</div>
+        <div>
+          <h3 id="weatherCond">—</h3>
+          <div class="mini-row">
+            <div>Temp: <strong id="wTemp">— °C</strong></div>
+            <div>Humidity: <strong id="wHum">—%</strong></div>
+            <div>Wind: <strong id="wWind">—</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card pollutants" id="pollutantsCard">
+        <h3>Major Pollutants</h3>
+        <table class="pollutants-table">
+          <tr><td>PM2.5</td><td id="p_pm25">—</td></tr>
+          <tr><td>PM10</td><td id="p_pm10">—</td></tr>
+          <tr><td>CO (ppb)</td><td id="p_co">—</td></tr>
+          <tr><td>NO₂ (ppb)</td><td id="p_no2">—</td></tr>
+          <tr><td>SO₂ (ppb)</td><td id="p_so2">—</td></tr>
+          <tr><td>O₃ (ppb)</td><td id="p_o3">—</td></tr>
+        </table>
+      </div>
+
+      <div class="card about-card">
+        <h3>About this dashboard</h3>
+        <p>
+          Live weather and AQI pulled from OpenWeatherMap (weather & air_pollution) and OpenAQ for nearby
+          monitoring locations. Search a city or let the browser detect your location.
+        </p>
+      </div>
+    </section>
+
+    <aside class="right-col">
+      <div class="card map-card">
+        <h4>Map</h4>
+        <div id="mapPlaceholder">Open map for <span id="mapCity">—</span></div>
+        <a id="openMapLink" href="#" target="_blank" class="btn">Open in Google Maps</a>
+      </div>
+
+      <div class="card stations-card">
+        <h4>Monitoring Locations</h4>
+        <div class="stations-list" id="stationsList">
+          <!-- table rows inserted here -->
+          <div class="loader">Loading stations…</div>
+        </div>
+        <div class="small-note">If stations are not available, a sample list is shown.</div>
+      </div>
+
+      <div class="card trending-card">
+        <h4>AQI History (24h)</h4>
+        <div id="aqiChart">[AQI chart placeholder — integrate Chart.js]</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    © Project — Live Weather & AQI • Data: OpenWeatherMap & OpenAQ
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
